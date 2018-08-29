@@ -1,0 +1,50 @@
+/*
+	Aaron Shaneen
+	CS 3750 T/TH
+	Debugging Activity
+*/
+
+Run Debug.main()
+	
+	Before:
+	Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	bill : 3
+		at Debug.sortItems(Debug.java:36)
+	neil : 4
+	john : 2
+		at Debug.main(Debug.java:16)
+	rick : 5
+	alex : 1
+	
+Debug Debug.main()
+
+	Debugger stops at line 29
+	
+Add items[0]-[4] to Watches
+
+	john 2
+	
+Set breakpoint on for loop in sortItems()
+
+	Debugger stops at line 33
+	
+Hit F8 until s++ is reached
+
+	neil 4
+
+Hit F8 until program crashes
+
+	j = 4
+
+	Cause of crash: As it's traversing the array to sort,
+	it is checking each index of the array against the
+	next one to see if the values need to be swapped. When
+	it gets	to the last index of the array it is once again
+	trying to check the next one, but there isn't a next
+	one, so it's going out of bounds.
+
+	Fix: To account for that we need to protect against the
+	last index checking beyond it's bounds while still
+	allowing the variable count to decrement enough times to
+	go through the process enough times to finish sorting all
+	the way to the end.
